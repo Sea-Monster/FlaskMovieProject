@@ -59,3 +59,9 @@ def animation():
 @home.route('/search/')
 def search():
     return render_template('home/search.html')
+
+
+# 电影详情页面
+@home.route('/play/')
+def play():
+    return render_template('home/play.html')
