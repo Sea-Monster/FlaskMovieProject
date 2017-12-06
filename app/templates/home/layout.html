@@ -51,7 +51,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="curlink" href="{{ url_for('home.index') }}"><span class="glyphicon glyphicon-film"></span>&nbsp;电影</a>
+                    <a class="curlink" href="index.html"><span class="glyphicon glyphicon-film"></span>&nbsp;电影</a>
                 </li>
                 <li>
                     <a class="curlink" href="{{ url_for('home.login') }}"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a>
@@ -73,10 +73,9 @@
 </nav>
 <!--导航-->
 <!--内容-->
-<div class="container" style="margin-top:76px">
-    {% block content %}
-    {% endblock %}
-</div>
+{% block content %}
+{% endblock %}
+
 <!--内容-->
 <!--底部-->
 <footer>

@@ -47,3 +47,12 @@ def loginlog():
 @home.route('/moviecol')
 def moviecol():
     return render_template('home/moviecol.html')
+
+
+# 列表?
+
+
+# 动画
+@home.route('/animation/')
+def animation():
+    return render_template('home/animation.html')
