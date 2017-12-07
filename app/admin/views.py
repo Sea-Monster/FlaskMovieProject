@@ -37,3 +37,16 @@ def tag_add():
 @admin.route('/tag/list/')
 def tag_list():
     return render_template('admin/tag_list.html')
+
+
+# - 电影管理页面 -
+# 编辑电影
+@admin.route('/movie/add/')
+def movie_add():
+    return render_template('admin/movie_add.html')
+
+
+# 电影列表
+@admin.route('/movie/list/')
+def movie_list():
+    return render_template('admin/movie_list.html')
