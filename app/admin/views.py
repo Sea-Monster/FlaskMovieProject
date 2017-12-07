@@ -100,8 +100,47 @@ def oplog_list():
 def adminloginlog_list():
     return render_template('admin/adminloginlog_list.html')
 
+
 # 会员登录日志列表
 @admin.route('/userloginlog/list/')
 def userloginlog_list():
     return render_template('admin/userloginlog_list.html')
 
+
+# - 权限管理页面搭建
+# 添加权限
+@admin.route('/auth/add/')
+def auth_add():
+    return render_template('admin/auth_add.html')
+
+
+# 权限列表
+@admin.route('/auth/list/')
+def auth_list():
+    return render_template('admin/auth_list.html')
+
+
+# - 角色管理页面
+# 添加角色
+@admin.route('/role/add/')
+def role_add():
+    return render_template('admin/role_add.html')
+
+
+# 角色列表
+@admin.route('/role/list/')
+def role_list():
+    return render_template('admin/role_list.html')
+
+
+# - 管理员管理页面
+# 添加管理员
+@admin.route('/admin/add/')
+def admin_add():
+    return render_template('admin/admin_add.html')
+
+
+# 管理员列表
+@admin.route('/admin/list/')
+def admin_list():
+    return render_template('admin/admin_list.html')
