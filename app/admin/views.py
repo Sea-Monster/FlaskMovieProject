@@ -6,7 +6,7 @@ from flask import render_template, redirect, url_for
 # 调用蓝图
 @admin.route('/')
 def index():
-    return 'this is admin'
+    return render_template('admin/index.html')
 
 
 # 登录
