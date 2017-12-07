@@ -20,7 +20,9 @@ def login():
 def logout():
     return redirect(url_for('admin.login'))
 
+
 # 修改密码
 @admin.route('/pwd/')
 def pwd():
     return render_template('admin/pwd.html')
+
