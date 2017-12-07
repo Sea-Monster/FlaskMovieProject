@@ -76,7 +76,32 @@ def user_list():
 def user_view():
     return render_template('admin/user_view.html')
 
+
 # 评论列表
 @admin.route('/comments/list/')
 def comment_list():
     return render_template('admin/comment_list.html')
+
+
+# 收藏列表
+@admin.route('/moviecol/list/')
+def moviecol_list():
+    return render_template('admin/moviecol_list.html')
+
+
+# 操作日志列表
+@admin.route('/oplog/list/')
+def oplog_list():
+    return render_template('admin/oplog_list.html')
+
+
+# 管理员日志列表
+@admin.route('/adminloginlog/list/')
+def adminloginlog_list():
+    return render_template('admin/adminloginlog_list.html')
+
+# 会员登录日志列表
+@admin.route('/userloginlog/list/')
+def userloginlog_list():
+    return render_template('admin/userloginlog_list.html')
+
