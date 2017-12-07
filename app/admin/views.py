@@ -75,3 +75,8 @@ def user_list():
 @admin.route('/user/view/')
 def user_view():
     return render_template('admin/user_view.html')
+
+# 评论列表
+@admin.route('/comments/list/')
+def comment_list():
+    return render_template('admin/comment_list.html')
