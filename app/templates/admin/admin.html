@@ -26,7 +26,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header">
-        <a href="index.html" class="logo">
+        <a href="{{ url_for('admin.index') }}" class="logo">
             <span class="logo-mini"><img src="{{ url_for('static', filename='base/images/logo.png') }}" style="height:40px;width:40px;">电影系统</span>
             <span class="logo-lg"><img src="{{ url_for('static', filename='base/images/logo.png') }}" style="height:40px;width:40px;">微电影管理系统</span>
         </a>
@@ -53,7 +53,7 @@
                             </li>
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="pwd.html" class="btn btn-default btn-flat">修改密码</a>
+                                    <a href="{{ url_for('admin.pwd') }}" class="btn btn-default btn-flat">修改密码</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url_for('admin.login') }}" class="btn btn-default btn-flat">退出系统</a>
