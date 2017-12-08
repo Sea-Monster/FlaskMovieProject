@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from . import admin
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash, session, request
+from app.admin.forms import LoginForm
+from app.models import Admin
 
 
 # 调用蓝图
@@ -10,9 +12,18 @@ def index():
 
 
 # 登录
-@admin.route('/login/')
+@admin.route('/login/', methods=['GET','POST'])
 def login():
-    return render_template('admin/login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        data = form.data
+        admin = Admin.query.filter_by(name=data['account']).first()
+        if not admin.check_pwd(data['pwd']):
+            flash('密码错误！')
+            return redirect(url_for('admin.login'))
+        session['admin'] = data['account']
+        return redirect(request.args.get('next') or url_for('admin.index'))
+    return render_template('admin/login.html', form=form)
 
 
 # 退出

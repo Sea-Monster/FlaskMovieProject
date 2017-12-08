@@ -1,22 +1,11 @@
 # -*- coding: utf-8 -*-
 # 数据模型
 
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import pymysql
+from app import db
 
-from sqlalchemy import String, Column, Integer
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@172.16.31.40:3306/movie'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-
-db = SQLAlchemy(app)
-_Integer: Integer = db.Integer
-_String: String = db.String
-_Column: Column = db.Column
-
+# from sqlalchemy import String, Column, Integer
 
 # 会员
 class User(db.Model):
@@ -151,16 +140,21 @@ class Role(db.Model):
 class Admin(db.Model):
     __tablename__ = 'admin'
     id = db.Column(db.Integer, primary_key=True)  # 编号
-    name = _Column(_String(100), unique=True)   # 管理员账号
-    pwd = _Column(_String(100))                 # 管理员密码
-    is_super = db.Column(db.SmallInteger)   # 是否为超级管理员
-    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))       # 所属角色
-    addtime = db.Column(db.DateTime, index = True, default=datetime.now)
-    adminlogs = db.relationship('Adminlog',backref='admin')
+    name = db.Column(db.String(100), unique=True)  # 管理员账号
+    pwd = db.Column(db.String(100))  # 管理员密码
+    is_super = db.Column(db.SmallInteger)  # 是否为超级管理员
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))  # 所属角色
+    addtime = db.Column(db.DateTime, index=True, default=datetime.now)
+    adminlogs = db.relationship('Adminlog', backref='admin')
     oplogs = db.relationship('Oplog', backref='admin')
 
     def __repr__(self):
         return '<Admin %r>' % self.name
+
+    def check_pwd(self, pwd):
+        from werkzeug.security import check_password_hash
+        return check_password_hash(self.pwd, pwd)
+
 
 # 管理员登录日志
 class Adminlog(db.Model):
@@ -172,6 +166,7 @@ class Adminlog(db.Model):
 
     def __repr__(self):
         return '<Adminlog %r>' % self.id
+
 
 # 操作日志
 class Oplog(db.Model):
